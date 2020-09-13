@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assignment2_RayCast", "Assignment2_RayCast\Assignment2_RayCast.vcxproj", "{E5BC6321-63C0-420F-A37A-2D27E6673ED6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Debug|x64.ActiveCfg = Debug|x64
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Debug|x64.Build.0 = Debug|x64
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Debug|x86.ActiveCfg = Debug|Win32
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Debug|x86.Build.0 = Debug|Win32
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Release|x64.ActiveCfg = Release|x64
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Release|x64.Build.0 = Release|x64
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Release|x86.ActiveCfg = Release|Win32
+		{E5BC6321-63C0-420F-A37A-2D27E6673ED6}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB154FCF-31FC-474E-A683-B06123C470E1}
+	EndGlobalSection
+EndGlobal
