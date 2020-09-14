@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ifs.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="vectors.h" />

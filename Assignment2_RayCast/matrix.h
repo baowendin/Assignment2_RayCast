@@ -87,7 +87,7 @@ public:
     void Transform(Vec2f& v) const {
         Vec4f v2 = Vec4f(v.x(), v.y(), 1, 1);
         Transform(v2);
-        v.Set(v2.x(), v2.y());
+        v.Set(v2.x(), v2.y()) ;
     }
 
     // Use to transform the direction of the ray

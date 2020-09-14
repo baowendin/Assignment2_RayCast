@@ -1,0 +1,60 @@
+###Assignment0
+####代码介绍
+&emsp;&emsp;这个作业和图形学将要学习主要的知识关系不大，主要是让我们回顾向量、矩阵乘法等基础知识和图形库的使用。作业要求是通过迭代坐标变换生成IFS图形，并且为我们提供了比较详细的模板，我们只需要填鸭式的把内容补全。
+&emsp;&emsp;首先是创建一个`Ifs类`，提供坐标变换的功能，这里我们将迭代次数设置为`n`,并且通过随机数选择迭代的矩阵，最后调用`Matrix::Transform`即可。由于这里我是直接以`(size,size)`为边界生成，导致在处理的时候出现了问题并且发现了`Matrix`库的BUG。这里由于在变换时候，对于低维度的向量和高维度的矩阵相乘，会自动在向量后面补1，但是我以`(size,size)`为边界导致没法找到不动点，最后我在`Ifs`类内增加一个`size`变量并且手动进行高维向量的转换
+```C++
+void render(Vec2f& v)
+{
+    for (int i = 0; i < n; i++)
+    {
+        float num = rand() % 100 * 1.0 / 100;
+        float count = 0;
+        for (int j = 0; j < possibiliy.size(); j++)
+        {
+            count += possibiliy[j];
+            if (count > num)
+            {
+                Vec4f tmp(v.x(), v.y(), size, size);
+                matrixs[j].Transform(tmp);
+                v.Set(tmp.x(), tmp.y());
+                break;
+            }
+        }
+    }
+}
+```
+&emsp;&emsp;至于Matrix库的BUG，是他的代码在读取3*3矩阵的时候，continue的条件写错了，应该是`x==3`或者`y==3`时候continue，他这个bug导致第二行和第二列被赋值0，而第三行、第三列却是有值的
+```c++
+void Matrix::Write3x3(FILE* F) const {
+    assert(F != NULL);
+    for (int y = 0; y < 4; y++) {
+        if (y == 2) continue;
+        for (int x = 0; x < 4; x++) {
+            if (x == 2) continue;
+            float tmp = data[y][x];
+            if (fabs(tmp) < 0.00001) tmp = 0;
+            fprintf(F, "%12.6f ", tmp);
+        }
+        fprintf(F, "\n");
+    }
+}
+```
+&emsp;&emsp;然后是主函数部分，一开始先把整个`image`设置为白色我们需要对点进行随机枚举，我这儿直接以`size`为边界进行随机，并且在写入的时候通过`floor()`函数保证数字不越界，将这些点设置为黑色，就能生成预期的图形。
+```c++
+for (int i = 0; i < num_points; i++)
+{
+    Vec2f pixel(rand() % size, rand() % size);
+    ifs.render(pixel);
+    //cout << tmp.x() << " " << tmp.y() << endl;
+    image.SetPixel((int)floor(pixel.x()), (int)floor(pixel.y()), Vec3f(0, 0, 0));
+}
+```
+####结果展示
+#####测试1：谢宾斯基三角形
+指令：`ifs -input sierpinski_triangle.txt -points 10000 -iters 30 -size 200 -output sierpinski_triangle.tga`
+结果：
+![Test](pic/assignment0_1.png)
+#####测试2：铁杉
+指令：`ifs -input fern.txt -points 50000 -iters 30 -size 400 -output fern.tga`
+结果：
+![Test](pic/assignment0_2.png)
